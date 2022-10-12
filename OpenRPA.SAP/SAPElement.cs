@@ -284,7 +284,7 @@ namespace OpenRPA.SAP
                 {
                     Action = "Select";
                 }
-                else if (Role == "GuiOkCodeField")
+                else if (Role == "GuiOkCodeField" || Role == "GuiTextField" || Role == "GuiPasswordField")
                 {
                     Action = "SetFocus";
                 }
