@@ -25,14 +25,17 @@ namespace OpenRPA.NM
         public InArgument<string> Script { get; set; }
         public InArgument<int> FrameId { get; set; }
         public InArgument<string> Browser { get; set; }
+        public InArgument<string> Xpath { get; set; }
         public OutArgument<object> Result { get; set; }
         public OutArgument<object[]> Results { get; set; }
         protected override void Execute(NativeActivityContext context)
         {
             var script = Script.Get(context);
             var frameid = FrameId.Get(context);
+            var xpath = Xpath.Get(context);
             var browser = Browser.Get(context);
             var timeout = TimeSpan.FromSeconds(3);
+            script = script.Replace("{{Xpath}}", xpath);
             script = Interfaces.Selector.Selector.ReplaceVariables(script, context.DataContext);
             if (browser != "chrome" && browser != "ff" && browser != "edge") browser = "chrome";
             var result = NMHook.ExecuteScript(browser, frameid, -1, script, timeout);

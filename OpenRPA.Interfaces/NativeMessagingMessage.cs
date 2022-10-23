@@ -33,6 +33,7 @@ namespace OpenRPA.Interfaces
         public int windowId { get; set; } = -1;
         public string functionName { get; set; } = "ping";
         public string script { get; set; }
+        public string xpath { get; set; }
         public object result { get; set; }
         public NativeMessagingMessage[] results { get; set; }
         public int tabid { get; set; } = -1;
